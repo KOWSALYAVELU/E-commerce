@@ -1,0 +1,41 @@
+{% extends 'shop/layouts/main.html' %}
+
+{% block title %}
+Order Confirmation | ShopKart
+{% endblock title %}
+
+{% block content %}
+<section class="bg-light py-4 my-5">
+  <div class="container">
+    <h4 class="mb-3">Order Confirmation</h4>
+    <hr>
+    <div class="alert alert-success">
+      <h5>Thank you for your order, {{ order.user.username }}!</h5>
+    </div>
+    
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Order Details</h5>
+        <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+        <p><strong>Total Amount:</strong> Rs. {{ order.total_amount }}</p>
+        <p><strong>Payment Method:</strong> {{ order.payment_method }}</p>
+        <p><strong>Payment Status:</strong> 
+          <span class="badge {% if order.payment_status == 'paid' %}bg-success{% else %}bg-warning{% endif %}">
+            {{ order.payment_status|title }}
+          </span>
+        </p>
+        {% if order.transaction_id %}
+        <p><strong>Transaction ID:</strong> {{ order.transaction_id }}</p>
+        {% endif %}
+        <p><strong>Shipping Address:</strong> {{ order.shipping_address }}</p>
+        <p><strong>Phone Number:</strong> {{ order.phone_number }}</p>
+        <p><strong>Order Status:</strong> {{ order.order_status }}</p>
+      </div>
+    </div>
+    
+    <div class="mt-3">
+      <a href="/" class="btn btn-primary">Continue Shopping</a>
+    </div>
+  </div>
+</section>
+{% endblock content %}

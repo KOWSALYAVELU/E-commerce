@@ -1,0 +1,184 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+  Registration | UrbanMart
+{% endblock title %}
+{% block content %}
+  <style>
+    .register-wrapper {
+      background: #fce4ec;
+      min-height: 100vh;
+      padding: 50px 0;
+    }
+    
+    .register-container {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 25px rgba(252, 228, 236, 0.5);
+      border: 1px solid #f8bbd0;
+    }
+    
+    .register-title {
+      color: #d81b60;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    .form-label {
+      color: #ad1457;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+    
+    .form-control {
+      background: #fff8e1;
+      border: 2px solid #f8bbd0;
+      border-radius: 25px;
+      padding: 15px 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(248, 187, 208, 0.3);
+    }
+    
+    .form-control:focus {
+      background: #ffffff;
+      border-color: #d81b60;
+      box-shadow: 0 0 15px rgba(216, 27, 96, 0.3);
+      outline: none;
+    }
+    
+    .btn-register {
+      background: #d81b60;
+      border: none;
+      border-radius: 25px;
+      padding: 15px 40px;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4);
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    .btn-register:hover {
+      background: #ad1457;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(216, 27, 96, 0.6);
+    }
+    
+    .required-star {
+      color: #d81b60;
+      font-weight: bold;
+    }
+    
+    .error-message {
+      background: #fce4ec;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 5px;
+      color: #d81b60;
+      font-weight: bold;
+      border: 1px solid #f8bbd0;
+    }
+    
+    .text-center a {
+      color: #d81b60;
+      font-weight: bold;
+    }
+    
+    .text-center a:hover {
+      color: #ad1457;
+    }
+  </style>
+
+  <div class="register-wrapper">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="register-container">
+            <h2 class="register-title">Create Your Account</h2>
+            {% include 'shop/inc/message.html' %}
+            
+            <form method="post" action="" class="register-form">
+              {% csrf_token %}
+              
+              <div class="form-group">
+                <label class="form-label">User Name <span class="required-star">*</span></label>
+                {{form.username}}
+                {% if form.errors.username %}
+                  <div class="error-message">{{ form.errors.username }}</div>
+                {% endif %}
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Email Address <span class="required-star">*</span></label>
+                {{form.email}}
+                {% if form.errors.email %}
+                  <div class="error-message">{{ form.errors.email }}</div>
+                {% endif %}
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Phone Number <span class="required-star">*</span></label>
+                {{form.phone_number}}
+                {% if form.errors.phone_number %}
+                  <div class="error-message">{{ form.errors.phone_number }}</div>
+                {% endif %}
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Password <span class="required-star">*</span></label>
+                {{form.password1}}
+                {% if form.errors.password1 %}
+                  <div class="error-message">{{ form.errors.password1 }}</div>
+                {% endif %}
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Confirm Password <span class="required-star">*</span></label>
+                {{form.password2}}
+                {% if form.errors.password2 %}
+                  <div class="error-message">{{ form.errors.password2 }}</div>
+                {% endif %}
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Address <span class="required-star">*</span></label>
+                {{form.address}}
+                {% if form.errors.address %}
+                  <div class="error-message">{{ form.errors.address }}</div>
+                {% endif %}
+              </div>
+              
+              <button type="submit" class="btn-register">Register Now</button>
+              
+              <p class="text-center mt-3">
+                Already have an account? <a href="{% url 'login' %}">Login Here</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple hover effects for form inputs
+    document.querySelectorAll('.form-control').forEach(input => {
+      input.addEventListener('focus', function() {
+        this.style.transform = 'translateY(-1px)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+{% endblock content %}

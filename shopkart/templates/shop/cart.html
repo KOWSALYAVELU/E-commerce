@@ -1,0 +1,65 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+  Registration | ShopKart
+{% endblock title %}
+{% block content %}
+  <section class="bg-light py-4 my-5" style="min-height:600px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="mb-3">Cart  Items</h4>
+          <hr style="border-color:#b8bfc2;">
+        </div>
+      
+        <table>
+            <tr>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th>Amount</th>
+                <th>Quantity</th>
+                <th>Total Amount</th>
+                <th>Remove</th>
+            </tr>
+          
+
+            {% for item in cart %}
+           <tr>
+              <td>
+                {% if item.product.product_image %}
+                <img src="{{item.product.product_image.url}}" style="height: 75px; width: 75px; object-fit: cover;" alt="{{item.product.name}}">
+                {% else %}
+                <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 75px; width: 75px;">
+                  <i class="fa fa-image text-light"></i>
+                </div>
+                {% endif %}
+              </td>
+              <td>{{item.product.name}}</td>
+              <td class="product-amt">Rs. {{ item.product.selling_price }}</td>  <!-- Individual Product Price -->
+              <td>{{item.product_qty}}</td>
+              <td class="total-amt">Rs. {{ item.total_cost }}</td>  <!-- Total Amount (quantity × price) -->
+              <td><a href="{% url 'remove_cart' item.id %}"  onclick="return confirm('Are you sure? to Remove')"  class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Remove</a></td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <form method="POST" action="{% url 'create_order_from_cart' %}" style="display: inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa fa-check-circle"></i> Check Out
+                  </button>
+                </form>
+              </td>
+              <td></td>
+            </tr>
+           
+        </table>
+       
+      </div>
+      </div>
+  </section>
+
+{% endblock content %}

@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap');
+
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: 'Noto Sans',sans-serif;
+    background-color: #f0f0f0;
+    animation: moveBackground 20s linear infinite;
+    background-size: 200% 200%;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.carousel-item img {
+    object-fit: cover ;
+    object-position: top;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.old_price {
+    font-weight : bold;
+    color:red; 
+}
+    
+
+.new_price {
+    font-weight: bold;
+    background-color:green;
+    color: white;
+    padding:2px ;
+    border-radius: 5px;
+    margin-bottom:2px ;
+}
+
+.pic-box{
+    position: relative;
+}
+.hot{
+    background-color: burlywood;
+    color:white;
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+    display: inline;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    z-index: 10;
+}
+
+/* Light Pink Registration Page Styles */
+.register-container {
+    background: #fce4ec;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 25px rgba(252, 228, 236, 0.5);
+    margin-top: 30px;
+    border: 1px solid #f8bbd0;
+}
+
+.register-form {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid #f8bbd0;
+}
+
+.register-title {
+    color: #d81b60;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    color: #ad1457;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.form-control {
+    background: #fff8e1;
+    border: 2px solid #f8bbd0;
+    border-radius: 25px;
+    padding: 15px 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(248, 187, 208, 0.3);
+}
+
+.form-control:focus {
+    background: #ffffff;
+    border-color: #d81b60;
+    box-shadow: 0 0 15px rgba(216, 27, 96, 0.3);
+    outline: none;
+}
+
+.btn-register {
+    background: #d81b60;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 40px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4);
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-register:hover {
+    background: #ad1457;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(216, 27, 96, 0.6);
+}
+
+.required-star {
+    color: #d81b60;
+    font-weight: bold;
+}
+
+.form-control:hover {
+    box-shadow: 0 4px 12px rgba(248, 187, 208, 0.4);
+}
+
+.error-message {
+    background: #fce4ec;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 5px;
+    color: #d81b60;
+    font-weight: bold;
+    border: 1px solid #f8bbd0;
+}
+
+.text-center a {
+    color: #d81b60;
+    font-weight: bold;
+}
+
+.text-center a:hover {
+    color: #ad1457;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Light Green Navbar Styles */
+.bg-light-green {
+    background-color: #90EE90 !important; /* Light green color */
+    border-bottom: 2px solid #76c776;
+}
+
+.bg-light-green .navbar-brand,
+.bg-light-green .nav-link {
+    color: #2c5f2d !important; /* Dark green text for contrast */
+    font-weight: 500;
+}
+
+.bg-light-green .nav-link:hover {
+    color: #1e3e1f !important;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.bg-light-green .navbar-toggler {
+    border-color: #2c5f2d;
+}
+
+.bg-light-green .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2844, 95, 45, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}

@@ -1,0 +1,45 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+  Registration | UrbanMart
+{% endblock title %}
+{% block content %}
+  <section class="bg-light py-4 my-5" style="min-height:600px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="mb-3">Favourite Item</h4>
+          <hr style="border-color:#b8bfc2;">
+        </div>
+      
+        <table>
+            <tr>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th>Unit</th>
+                <th>Remove</th>
+            </tr>
+          
+
+            {% for item in fav %}
+           <tr>
+              <td>
+                {% if item.product.product_image %}
+                  <img src="{{item.product.product_image.url}}" style="height: 75px; width: 75px; object-fit: cover;" alt="{{item.product.name}}">
+                {% else %}
+                  <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 75px; width: 75px; color: white;">
+                <i class="fa fa-image fa-2x"></i>
+              </div>
+                {% endif %}
+              </td>
+              <td>{{item.product.name}}</td>
+              <td>{{item.product.selling_price | stringformat:'d'}}</td>
+              <td><a href="{% url 'remove_fav' item.id %}"  onclick="return confirm('Are you sure? to Remove')"  class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Remove</a></td>
+            </tr>
+            {% endfor %}
+            <tr>
+        </table>
+       
+      </div>
+      </div>
+  </section>
+{% endblock content %}

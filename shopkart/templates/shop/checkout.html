@@ -1,0 +1,142 @@
+
+{% extends 'shop/layouts/main.html' %}
+
+{% block title %}
+Checkout | ShopKart
+{% endblock title %}
+
+{% block content %}
+<section class="bg-light py-4 my-5">
+  <div class="container">
+    <h4 class="mb-3">Checkout</h4>
+    <hr>
+    <form id="checkout-form" method="POST" action="{% url 'process_payment' order.id %}">
+      {% csrf_token %}
+      
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Billing Information</h5>
+          <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id极="first_name" name="first_name" required>
+          </div>
+          <div class极="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone_number" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ order.phone_number }}" 
+                   pattern="[0-9]{10}" title="Please enter exactly 10 digits" 
+                   maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" required>
+            <div class="form-text">Enter exactly 10 digits (no spaces or special characters)</div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <h5>Shipping Information</h5>
+          <div class="mb-3">
+            <label for="shipping_address" class="form-label">Shipping Address</label>
+            <textarea class="form-control" id="shipping_address" name="shipping_address" rows="3" required>{{ order.shipping_address }}</textarea>
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <select class="form-control" id="city" name="city" required>
+              <option value="">Select City</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Bangalore">Bangalore</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Kolkata">Kolkata</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Pune">Pune</option>
+              <option value="Ahmedabad">Ahmedabad</option>
+              <option value="Jaipur">Jaipur</option>
+              <option value="Lucknow">Lucknow</option>
+              <option value="Bhopal">Bhopal</option>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Kochi">Kochi</option>
+              <option value="Goa">Goa</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="state" class="form-label">State</label>
+            <select class="form-control" id="state" name="state" required>
+              <option value="">Select State</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              <option value="Assam">Assam</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Goa">Goa</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="极adya Pradesh">Madhya Pradesh</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Manipur">Manipur</option>
+              <option value="Meghalaya">Meghalaya</option>
+              <option value="Mizoram">Mizoram</option>
+              <option value="Nagaland">Nagaland</option>
+              <option value="Odisha">Odisha</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Tripura">Tripura</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Uttarakhand">Uttarakhand</option>
+              <option value="West Bengal">West Bengal</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <hr>
+      
+      <div class="mb-3">
+        <h5> Apply Coupon Code</h5>
+        <div class="input-group">
+          <input type="text" class="form-control" id="coupon_code" name="coupon_code" placeholder="Enter coupon code">
+          <button type="button" class="btn" id="apply_coupon" style="background-color: #ff69b4; color: white; border-color: #ff69b4;">Apply</button>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <label for="payment_method" class="form-label">Payment Method</label>
+        <select class="form-control" id="payment_method" name="payment_method" required>
+          <option value="">Select Payment Method</option>
+          <option value="credit_card">💳 Credit Card</option>
+          <option value="debit_card">💳 Debit Card</option>
+          <option value="gpay">📱 Google Pay</option>
+          <option value="phonepay">📱 PhonePe</option>
+          <option value="paypal">💼 PayPal</option>
+          <option value="cash_on_delivery">💰 Cash on Delivery</option>
+        </select>
+      </div>
+      
+      <h5>Total Amount: Rs. {{ order.total_amount }}</h5>
+      <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+    </form>
+  </div>
+</section>
+
+<script>
+document.getElementById('apply_coupon').addEventListener('click', function() {
+    const couponCode = document.getElementById('coupon_code').value;
+    if (couponCode) {
+        alert('Coupon code "' + couponCode + '" applied!');
+    } else {
+        alert('Please enter a coupon code');
+    }
+});
+</script>
+{% endblock content %}
