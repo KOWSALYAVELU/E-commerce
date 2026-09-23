@@ -131,27 +131,26 @@ STATICFILES_DIRS=[
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Logging configuration
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': 'debug.log',
-        },
-    },
-    'root': {
-        'handlers': ['console', 'file'],
-        'level': 'INFO',
-    },
-    'loggers': {
-        'shopkart.views': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-    },
-}
+#LOGGING = {
+   #'disable_existing_loggers': False,
+    #'handlers': {
+     #   'console': {
+      #      'class': 'logging.StreamHandler',
+       # },
+        #'file': {
+         #   'class': 'logging.FileHandler',
+          #  'filename': 'debug.log',
+        #},
+    #},
+    #'root': {
+     #   'handlers': ['console', 'file'],
+      #  'level': 'INFO',
+    #},
+    #'loggers': {
+     #   'shopkart.views': {
+      #      'handlers': ['console', 'file'],
+       #     'level': 'DEBUG',
+        #    'propagate': False,
+        #},
+    #},
+#}
