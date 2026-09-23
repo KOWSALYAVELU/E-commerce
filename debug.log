@@ -346,3 +346,20 @@ Not Found: /favicon.ico
 Unauthorized: /addtocart/
 Unauthorized: /shop_now/
 Unauthorized: /shop_now/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+fav_page called
+AJAX request detected
+User 16 is authenticated
+Request body: b'{"pid":"34"}'
+Product ID: 34
+Product 34 added to favorites for user 16
+Watching for file changes with StatReloader
+Unauthorized: /addtocart/
+fav_page called
+AJAX request detected
+User not authenticated
+Unauthorized: /fav/
+Unauthorized: /addtocart/
