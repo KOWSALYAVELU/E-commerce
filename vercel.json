@@ -1,11 +1,13 @@
-{
+ {
   "version": 2,
   "builds": [
     {
       "src": "ecom/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb" },
-      "includeFiles": "static/**"
+      "config": {
+        "maxLambdaSize": "15mb",
+        "includeFiles": "static/**"
+      }
     }
   ],
   "routes": [
